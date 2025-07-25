@@ -1,8 +1,15 @@
+import Banner from "./Banner/Banner";
+import Catogory from "./Catogory/Catogory";
+import Dailog from "./Dailogs/Dailog";
+import PopularManu from "./PopularManu/PopularManu";
 
 const Home = () => {
   return (
     <div>
-      <h2>this is home</h2>
+      <Banner></Banner> 
+      <Catogory></Catogory>
+      {/* <Dailog></Dailog> */}
+      <PopularManu></PopularManu>
     </div>
   );
 };
