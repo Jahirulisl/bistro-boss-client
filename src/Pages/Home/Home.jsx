@@ -1,3 +1,4 @@
+import Contacts from "../Shard/Contacts/Contacts";
 import Banner from "./Banner/Banner";
 import Catogory from "./Catogory/Catogory";
 import Dailog from "./Dailogs/Dailog";
@@ -12,6 +13,7 @@ const Home = () => {
       <Catogory></Catogory>
       <Dailog></Dailog>
       <PopularManu></PopularManu>
+      <Contacts></Contacts>
       <Faetured></Faetured>
       <Testimunials></Testimunials>
     </div>
