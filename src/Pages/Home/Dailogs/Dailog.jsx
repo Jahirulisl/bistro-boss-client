@@ -1,9 +1,9 @@
-import React from 'react';
+
 import dailog from '../../../assets/home/chef-service.jpg'
 
 const Dailog = () => {
   return (
-    <div className='mx-auto text-center mt-8'>
+    <div className='mb-32'>
       <img src={dailog} alt="" />
       <div className='mx-auto text-center border-spacing-4 md:w-6/12 my-8 -mt-52 text-white py-4'>
         <h2 className='text-3xl uppercase'>BISTRO BOSS</h2>
