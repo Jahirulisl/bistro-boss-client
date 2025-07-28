@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import Cover from "../../../Shard/Cover/Cover";
 import MenuItem from "../../../Shard/MenuItems/MenuItem";
 
-const ManueCatagory = ({ items,title,img }) => {
+const ManueCatagory = ({ items, title, img }) => {
   return (
     <div className="pt-8">
       {title && <Cover img={img} title={title}></Cover>}
@@ -12,6 +13,9 @@ const ManueCatagory = ({ items,title,img }) => {
           </MenuItem>)
         }
       </div>
+      <Link to="/order">
+        <button className="btn btn-neutral btn-outline border-0 border-b-4 mt-4">Order favret food</button>
+      </Link>
     </div>
   );
 };
