@@ -1,7 +1,18 @@
+import Cover from "../../../Shard/Cover/Cover";
+import MenuItem from "../../../Shard/MenuItems/MenuItem";
 
-const ManueCatagory = () => {
+const ManueCatagory = ({ items,title,img }) => {
   return (
-    <div>this is home</div>
+    <div className="pt-8">
+      {title && <Cover img={img} title={title}></Cover>}
+      <div className='grid md:grid-cols-2 gap-10 my-16'>
+        {
+          items.map(item => <MenuItem
+            key={item._id} item={item}>
+          </MenuItem>)
+        }
+      </div>
+    </div>
   );
 };
 
