@@ -13,7 +13,7 @@ const ManueCatagory = ({ items, title, img }) => {
           </MenuItem>)
         }
       </div>
-      <Link to="/order">
+      <Link to={`/order/${title}`}>
         <button className="btn btn-neutral btn-outline border-0 border-b-4 mt-4">Order favret food</button>
       </Link>
     </div>

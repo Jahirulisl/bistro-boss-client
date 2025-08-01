@@ -1,6 +1,6 @@
 import FoodCard from "../../../../Components/FoodCard/FoodCard";
 
-const OrderTab = ({ items }) => {
+const OrderTab = ({items}) => {
   return (
 
     //from order section>
