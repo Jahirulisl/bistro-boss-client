@@ -1,10 +1,16 @@
 //from simpole react chapta start>
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../provider/AuthProvider';
 //from simpole react chapta end>
 const Login = () => {
   const captchRef = useRef(null);
   const [disabled,setDisable] = useState(true);
+  
+  //from authprovider use Authcontext >>
+ const { signin} = useContext(AuthContext);
+
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, [])
@@ -14,6 +20,14 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    //from authProvider usecontext and sign in start>>
+     signin(email,password)
+     .then(result => {
+      const user = result.user;
+      console.log(user);
+     })
+      //from authProvider usecontext and sign in end>>
   }
   const handleValidateCaptcha = () =>{
    const user_captcha_value = captchRef.current.value;
