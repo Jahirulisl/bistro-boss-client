@@ -2,13 +2,16 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 //from simpole react chapta end>
 const Login = () => {
   const captchRef = useRef(null);
   const [disabled, setDisable] = useState(true);
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   //from authprovider use Authcontext >>
   const { signin } = useContext(AuthContext);
@@ -38,7 +41,8 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
         });
-      })
+      });
+      navigate(from,{repace:true});
     //from authProvider usecontext and sign in end>>
   }
   const handleValidateCaptcha = () => {
