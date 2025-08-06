@@ -31,7 +31,7 @@ const Order = () => {
   const drinks = menu.filter(item => item.category === 'drinks');
   //from menu data end>
   return (
-    <div>
+    <div className='text-center uppercase text-violet-600'>
       <Helmet>
         <title>Bistro Boss | order Food</title>
       </Helmet>

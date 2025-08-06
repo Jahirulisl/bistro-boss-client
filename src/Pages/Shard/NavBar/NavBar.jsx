@@ -1,11 +1,35 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const NavBar = () => {
+  //for logOut show start step-1 >
+  const { user, logout } = useContext(AuthContext);
+  //for logOut show end step-1 >
+
+  //for logOut show start step-3 >
+  const handleLogOut = () => {
+    logout()
+      .then(() => { })
+      .catch(error => console.log(error));
+  }
+  //for logOut show end step-3 >
+
   const navOption = <>
-  <li><Link to="/">Home</Link> </li>
-  <li><Link to="/menu">Our Menu</Link></li>
-  <li><Link to="/order">Order Food</Link></li>
-  <li><Link to="/login">LogIn</Link></li>
+    <li><Link to="/">Home</Link> </li>
+    <li><Link to="/menu">Our Menu</Link></li>
+    <li><Link to="/order">Order Food</Link></li>
+
+
+    {/* <li><Link to="/signUp">SignUp</Link></li> */}
+
+    {/* for logOut show start step-2 */}
+    {
+      user ? <>
+        <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+      </> : <> <li><Link to="/login">LogIn</Link></li></>
+    }
+    {/* for logOut show end step-2 */}
   </>
   return (
     <div>
@@ -27,9 +51,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-           {
-            navOption
-           }
+            {
+              navOption
+            }
           </ul>
         </div>
         <div className="navbar-end">

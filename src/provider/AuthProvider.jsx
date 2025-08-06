@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   //make signin start>
  const signin = (email,password)=>{
   setLoading(true);
-  return signInWithEmailAndPassword(email,password);
+  return signInWithEmailAndPassword(auth,email,password);
  }
    //make signin end>
 
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
     logout,
   }
   return (
-    <AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
       {children}
     </AuthContext.Provider>
   );
