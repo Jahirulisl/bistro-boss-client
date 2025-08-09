@@ -10,7 +10,6 @@ const Login = () => {
   const captchRef = useRef(null);
   const [disabled, setDisable] = useState(true);
   const location = useLocation();
-
   const from = location.state?.from?.pathname || "/";
 
   //from authprovider use Authcontext >>

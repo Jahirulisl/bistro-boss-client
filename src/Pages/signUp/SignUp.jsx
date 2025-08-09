@@ -3,13 +3,19 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const SignUp = () => {
 
-  const { register, handleSubmit, formState: { errors }, } = useForm();
+  const { register, handleSubmit, reset, formState: { errors }, } = useForm();
+
+  //for back home page start>
+ const navigate = useNavigate();
+  //for back home page end>
+
 
   //for conform singup worke use by hooks from auth provider strt step-1>
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateuserprofile } = useContext(AuthContext);
 
   //for conform singup worke use by hooks from auth provider step-1 end>
 
@@ -21,6 +27,23 @@ const SignUp = () => {
       .then(result => {
         const logedUser = result.user;
         console.log(logedUser);
+        updateuserprofile(data.name, data.PhotoUrl)
+          .then(() => {
+            console.log("user profile info update")
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "user created is sussecefully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate('/')
+
+          })
+          .catch(error => {
+            console.log(error)
+          })
       })
     //for conform singup worke use by hooks from auth provider strt step-2>
   };
@@ -50,13 +73,24 @@ const SignUp = () => {
                 {errors.name && <span className="text-red-600">Name is required</span>}
               </div>
 
+              {/* photo url  start*/}
+              <div className='form-control'>
+                <label className="label">Photo Url</label>
+                <input type="text" {...register("PhotoUrl", { required: true })} className="input" placeholder="Type Photo Url" />
+                {errors.PhotoUrl && <span className="text-red-600">PhotoUrl is required</span>}
+              </div>
+              {/* photo url  end*/}
+
+              {/*email  start*/}
               <div className='form-control'>
                 <label className="label">Email</label>
                 <input type="email" {...register("email", { required: true })} name='email' className="input" placeholder="Email" />
 
                 {errors.email && <span className="text-red-600">Email is required</span>}
               </div>
+              {/*email  end*/}
 
+              {/*password  start*/}
               <div>
                 <label className="label">Password</label>
                 <input type="password" {...register("password", {
@@ -90,6 +124,7 @@ const SignUp = () => {
                 </label>
 
               </div>
+              {/*password  end*/}
 
               <div className="form-control mt-6">
                 <input className="btn btn-primary " type="submit" value="Sign Up" />
