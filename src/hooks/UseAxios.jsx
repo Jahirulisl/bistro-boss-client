@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const axiossecquer = axios.create({
+const axiossecquer = axios.create({
  baseURL:'http://localhost:5000',
   
 });

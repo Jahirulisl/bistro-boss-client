@@ -2,11 +2,15 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../provider/AuthProvider';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 //from simpole react chapta end>
 const Login = () => {
+
+  //for navigate st
+ const navigate =useNavigate();
+  //for navigate end
   const captchRef = useRef(null);
   const [disabled, setDisable] = useState(true);
 
