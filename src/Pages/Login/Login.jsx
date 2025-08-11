@@ -9,8 +9,10 @@ import Swal from 'sweetalert2';
 const Login = () => {
   const captchRef = useRef(null);
   const [disabled, setDisable] = useState(true);
+
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log('state in the location login page',location.state)
 
   //from authprovider use Authcontext >>
   const { signin } = useContext(AuthContext);
@@ -99,7 +101,8 @@ const Login = () => {
                 <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-2">Validate</button>
                 {/*Captcha Canvas render end> */}
                 <div>
-                  <input disabled={disabled} className='btn btn-primary mt-4' type="Submit" value="Login" />
+                  {/* todo: recaptcha disable /false */}
+                  <input disabled={false} className='btn btn-primary mt-4' type="Submit" value="Login" />
                 </div>
               </div>
             </form>
