@@ -5,12 +5,17 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import SocailLogin from "../../Components/SocailLogin/SocailLogin";
 const SignUp = () => {
+  //axiousPublic ta hook thaka nia asa st
+  const axiosPublic = UseAxiosPublic();
+  //axiousPublic ta ka nia asa end
 
   const { register, handleSubmit, reset, formState: { errors }, } = useForm();
 
   //for back home page start>
- const navigate = useNavigate();
+  const navigate = useNavigate();
   //for back home page end>
 
 
@@ -20,7 +25,6 @@ const SignUp = () => {
   //for conform singup worke use by hooks from auth provider step-1 end>
 
   const onSubmit = (data) => {
-    console.log(data);
 
     //for conform singup worke use by hooks from auth provider strt step-2>
     createUser(data.email, data.password)
@@ -29,17 +33,26 @@ const SignUp = () => {
         console.log(logedUser);
         updateuserprofile(data.name, data.PhotoUrl)
           .then(() => {
-            console.log("user profile info update")
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "user created is sussecefully",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            navigate('/')
-
+            //create user entry in the database
+            const userInfo = {
+              name: data.name,
+              email: data.email
+            }
+            axiosPublic.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId){
+                  console.log('user added to the database')
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "user created is sussecefully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/')
+                }
+              })
           })
           .catch(error => {
             console.log(error)
@@ -130,7 +143,8 @@ const SignUp = () => {
                 <input className="btn btn-primary " type="submit" value="Sign Up" />
               </div>
             </form>
-            <p className="text-center"><small><Link to="/login">Already have an account</Link></small></p>
+            <p className=" px-6"><small><Link to="/login">Log in</Link></small></p>
+            <SocailLogin></SocailLogin>
           </div>
         </div>
       </div>

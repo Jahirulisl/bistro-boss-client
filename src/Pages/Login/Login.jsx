@@ -5,6 +5,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocailLogin from '../../Components/SocailLogin/SocailLogin';
 //from simpole react chapta end>
 const Login = () => {
 
@@ -110,7 +111,9 @@ const Login = () => {
                 </div>
               </div>
             </form>
-            <p className='text-center'><small>New Here? <Link to="/signup">Create an account</Link>  </small></p>
+            <p className='px-6'><small>New Here? <Link to="/signup">Create an account</Link>  </small></p>
+
+              <SocailLogin></SocailLogin>
           </div>
         </div>
       </div>
